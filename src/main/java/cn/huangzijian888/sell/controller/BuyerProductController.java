@@ -2,8 +2,8 @@ package cn.huangzijian888.sell.controller;
 
 import cn.huangzijian888.sell.dataobject.ProductCategory;
 import cn.huangzijian888.sell.dataobject.ProductInfo;
-import cn.huangzijian888.sell.service.impl.CategoryServiceImpl;
-import cn.huangzijian888.sell.service.impl.ProductServiceImpl;
+import cn.huangzijian888.sell.service.CategoryService;
+import cn.huangzijian888.sell.service.ProductService;
 import cn.huangzijian888.sell.utils.ResultVoUtil;
 import cn.huangzijian888.sell.vo.ProductInfoVO;
 import cn.huangzijian888.sell.vo.ProductVO;
@@ -27,10 +27,10 @@ import java.util.stream.Collectors;
 public class BuyerProductController {
 
     @Autowired
-    private ProductServiceImpl productService;
+    private ProductService productService;
 
     @Autowired
-    private CategoryServiceImpl categoryService;
+    private CategoryService categoryService;
 
     @GetMapping("/list")
     public ResultVO list() {
