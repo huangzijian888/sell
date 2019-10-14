@@ -2,7 +2,7 @@ package cn.huangzijian888.sell.dataobject;
 
 import cn.huangzijian888.sell.enums.OrderStatusEnum;
 import cn.huangzijian888.sell.enums.PayStatusEnum;
-import lombok.Getter;
+import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Entity
 @DynamicUpdate
-@Getter
+@Data
 public class OrderMaster {
     /**
      * 订单id.

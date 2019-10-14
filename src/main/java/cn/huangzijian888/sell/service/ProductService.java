@@ -1,6 +1,7 @@
 package cn.huangzijian888.sell.service;
 
 import cn.huangzijian888.sell.dataobject.ProductInfo;
+import cn.huangzijian888.sell.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -43,9 +44,18 @@ public interface ProductService {
      */
     ProductInfo save(ProductInfo productInfo);
 
-    //TODO 加库存
+    /**
+     * 加库存
+     *
+     * @param cartDTOList
+     */
+    void increaseStock(List<CartDTO> cartDTOList);
 
-    //TODO 减库存
-
+    /**
+     * 减库存
+     *
+     * @param cartDTOList
+     */
+    void decreaseStock(List<CartDTO> cartDTOList);
 
 }
