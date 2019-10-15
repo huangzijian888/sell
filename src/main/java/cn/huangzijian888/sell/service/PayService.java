@@ -15,4 +15,12 @@ public interface PayService {
      * @return
      */
     PayResponse create(OrderDTO orderDTO);
+
+    /**
+     * 微信支付回调
+     *
+     * @param notifyData
+     * @return
+     */
+    PayResponse notify(String notifyData);
 }

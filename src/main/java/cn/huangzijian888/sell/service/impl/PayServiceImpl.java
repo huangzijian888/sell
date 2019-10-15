@@ -32,10 +32,17 @@ public class PayServiceImpl implements PayService {
         payRequest.setOrderId(orderDTO.getOrderId());
         payRequest.setOrderName(ORDER_NAME);
         payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_H5);
-        log.info("【微信支付】request={}", JSON.toJSONString(payRequest));
+        log.info("【微信支付】发起支付，request={}", JSON.toJSONString(payRequest));
 
         PayResponse payResponse = bestPayService.pay(payRequest);
-        log.info("【微信支付】response={}", JSON.toJSONString(payResponse));
+        log.info("【微信支付】发起支付，response={}", JSON.toJSONString(payResponse));
+        return payResponse;
+    }
+
+    @Override
+    public PayResponse notify(String notifyData) {
+        PayResponse payResponse = bestPayService.asyncNotify(notifyData);
+        log.info("【微信支付】异步通知，payResponse={}", JSON.toJSONString(payResponse));
         return payResponse;
     }
 }
