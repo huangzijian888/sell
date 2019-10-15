@@ -11,3 +11,19 @@ spring:
 wechat:
   mpAppId:
   mpAppSecret:
+  mchId:
+  mchKey:
+  keyPath:
+  notifyUrl:
+
+wx:
+  pay:
+    appId:
+    mchId:
+    mchKey:
+    keyPath:
+    notifyUrl:
+
+server:
+  servlet:
+    context-path: /sell
