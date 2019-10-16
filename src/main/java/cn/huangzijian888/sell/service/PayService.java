@@ -4,6 +4,7 @@ import cn.huangzijian888.sell.dto.OrderDTO;
 import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.model.RefundResponse;
 
 /**
  * @author: huangzijian888
@@ -26,4 +27,12 @@ public interface PayService {
      * @return
      */
     PayResponse notify(String notifyData);
+
+    /**
+     * 退款
+     *
+     * @param orderDTO
+     * @return
+     */
+    RefundResponse refund(OrderDTO orderDTO);
 }
