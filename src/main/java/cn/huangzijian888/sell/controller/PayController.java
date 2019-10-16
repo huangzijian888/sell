@@ -44,8 +44,8 @@ public class PayController {
         return new ModelAndView("pay/create", map);
     }
 
-    @PostMapping("/notify")
-    public ModelAndView notify(@RequestBody String notifyData) {
+    @PostMapping("/notify/order")
+    public ModelAndView notify(@RequestBody String notifyData) throws WxPayException {
         payService.notify(notifyData);
         return new ModelAndView("pay/success");
     }

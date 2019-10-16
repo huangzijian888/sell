@@ -9,6 +9,7 @@ import cn.huangzijian888.sell.service.BuyerService;
 import cn.huangzijian888.sell.service.OrderService;
 import cn.huangzijian888.sell.utils.ResultVoUtil;
 import cn.huangzijian888.sell.vo.ResultVO;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -112,7 +113,7 @@ public class BuyerOrderController {
      */
     @PostMapping("/cancel")
     public ResultVO cancel(@RequestParam("openid") String openid,
-                           @RequestParam("orderId") String orderId) {
+                           @RequestParam("orderId") String orderId) throws WxPayException {
         buyerService.cancelOrder(openid, orderId);
         return ResultVoUtil.success();
     }

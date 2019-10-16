@@ -15,7 +15,10 @@ public enum PayStatusEnum {
      */
     WAIT(0, "未支付"),
 
-    SUCCESS(1, "支付成功");
+    SUCCESS(1, "支付成功"),
+
+    REFUND(2, "已退款"),
+    ;
 
     private Integer code;
     private String msg;

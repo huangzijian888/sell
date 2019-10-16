@@ -33,7 +33,7 @@ public class PayServiceImplTest {
     }
 
     @Test
-    public void refund() {
+    public void refund() throws WxPayException {
         OrderDTO orderDTO = orderService.findOne("1571181603575397841");
         payService.refund(orderDTO);
     }

@@ -7,15 +7,6 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   jackson:
     default-property-inclusion: non_null
-
-wechat:
-  mpAppId:
-  mpAppSecret:
-  mchId:
-  mchKey:
-  keyPath:
-  notifyUrl:
-
 wx:
   pay:
     appId:
@@ -23,7 +14,6 @@ wx:
     mchKey:
     keyPath:
     notifyUrl:
-
 server:
   servlet:
     context-path: /sell

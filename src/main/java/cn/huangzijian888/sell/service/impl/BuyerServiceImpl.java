@@ -5,6 +5,7 @@ import cn.huangzijian888.sell.enums.ResultEnum;
 import cn.huangzijian888.sell.exception.SellException;
 import cn.huangzijian888.sell.service.BuyerService;
 import cn.huangzijian888.sell.service.OrderService;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
-    public OrderDTO cancelOrder(String openid, String orderId) {
+    public OrderDTO cancelOrder(String openid, String orderId) throws WxPayException {
         OrderDTO orderDTO = checkOrderOwner(openid, orderId);
         if (orderDTO == null) {
             log.error("【取消订单】查不到该订单，orderId={}", orderId);

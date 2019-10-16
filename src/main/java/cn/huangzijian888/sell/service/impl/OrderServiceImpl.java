@@ -16,6 +16,7 @@ import cn.huangzijian888.sell.service.OrderService;
 import cn.huangzijian888.sell.service.PayService;
 import cn.huangzijian888.sell.service.ProductService;
 import cn.huangzijian888.sell.utils.KeyUtil;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,7 +125,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public OrderDTO cancel(OrderDTO orderDTO) {
+    public OrderDTO cancel(OrderDTO orderDTO) throws WxPayException {
 
         OrderMaster orderMaster = new OrderMaster();
 
@@ -156,6 +157,8 @@ public class OrderServiceImpl implements OrderService {
         // 若已支付，需退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
             payService.refund(orderDTO);
+            orderMaster.setPayStatus(PayStatusEnum.REFUND.getCode());
+            orderMasterRepository.save(orderMaster);
         }
 
         return orderDTO;
