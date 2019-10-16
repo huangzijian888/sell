@@ -1,7 +1,10 @@
 package cn.huangzijian888.sell.service;
 
 import cn.huangzijian888.sell.dto.OrderDTO;
-import com.lly835.bestpay.model.PayResponse;
+import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
+import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
+import com.github.binarywang.wxpay.bean.result.WxPayRefundResult;
+import com.github.binarywang.wxpay.exception.WxPayException;
 
 /**
  * @author: huangzijian888
@@ -13,6 +16,25 @@ public interface PayService {
      *
      * @param orderDTO
      * @return
+     * @throws WxPayException
      */
-    PayResponse create(OrderDTO orderDTO);
+    WxPayMpOrderResult create(OrderDTO orderDTO) throws WxPayException;
+
+    /**
+     * 微信支付回调
+     *
+     * @param notifyData
+     * @return
+     * @throws WxPayException
+     */
+    WxPayOrderNotifyResult notify(String notifyData) throws WxPayException;
+
+    /**
+     * 退款
+     *
+     * @param orderDTO
+     * @return
+     * @throws WxPayException
+     */
+    WxPayRefundResult refund(OrderDTO orderDTO) throws WxPayException;
 }

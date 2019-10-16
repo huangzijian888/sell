@@ -3,6 +3,7 @@ package cn.huangzijian888.sell.service.impl;
 import cn.huangzijian888.sell.dto.OrderDTO;
 import cn.huangzijian888.sell.service.OrderService;
 import cn.huangzijian888.sell.service.PayService;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +27,14 @@ public class PayServiceImplTest {
     private OrderService orderService;
 
     @Test
-    public void create() {
+    public void create() throws WxPayException {
         OrderDTO orderDTO = orderService.findOne("1571072561140799304");
         payService.create(orderDTO);
+    }
+
+    @Test
+    public void refund() throws WxPayException {
+        OrderDTO orderDTO = orderService.findOne("1571181603575397841");
+        payService.refund(orderDTO);
     }
 }

@@ -29,7 +29,7 @@ public class WechatController {
 
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl) {
-        String url = "https://sell.huangzijian888.cn/wechat/userInfo";
+        String url = "https://sell.huangzijian888.cn/sell/wechat/userInfo";
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(returnUrl));
         log.info("【微信网页授权】获取code，result={}", redirectUrl);
         return "redirect:" + redirectUrl;

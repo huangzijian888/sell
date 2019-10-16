@@ -1,6 +1,7 @@
 package cn.huangzijian888.sell.service;
 
 import cn.huangzijian888.sell.dto.OrderDTO;
+import com.github.binarywang.wxpay.exception.WxPayException;
 
 /**
  * @author: huangzijian888
@@ -23,6 +24,6 @@ public interface BuyerService {
      * @param orderId
      * @return
      */
-    OrderDTO cancelOrder(String openid, String orderId);
+    OrderDTO cancelOrder(String openid, String orderId) throws WxPayException;
 
 }

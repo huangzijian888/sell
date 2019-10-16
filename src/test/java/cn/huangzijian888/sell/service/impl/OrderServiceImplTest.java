@@ -4,6 +4,7 @@ import cn.huangzijian888.sell.dataobject.OrderDetail;
 import cn.huangzijian888.sell.dto.OrderDTO;
 import cn.huangzijian888.sell.enums.OrderStatusEnum;
 import cn.huangzijian888.sell.enums.PayStatusEnum;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -75,7 +76,7 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void cancel() {
+    public void cancel() throws WxPayException {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.cancel(orderDTO);
         Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());

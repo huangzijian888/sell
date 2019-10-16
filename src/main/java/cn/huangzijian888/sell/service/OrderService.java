@@ -1,6 +1,7 @@
 package cn.huangzijian888.sell.service;
 
 import cn.huangzijian888.sell.dto.OrderDTO;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -39,8 +40,9 @@ public interface OrderService {
      *
      * @param orderDTO
      * @return
+     * @throws WxPayException
      */
-    OrderDTO cancel(OrderDTO orderDTO);
+    OrderDTO cancel(OrderDTO orderDTO) throws WxPayException;
 
     /**
      * 完结订单.
