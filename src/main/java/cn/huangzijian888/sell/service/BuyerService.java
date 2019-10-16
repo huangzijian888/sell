@@ -23,6 +23,7 @@ public interface BuyerService {
      * @param openid
      * @param orderId
      * @return
+     * @throws WxPayException
      */
     OrderDTO cancelOrder(String openid, String orderId) throws WxPayException;
 

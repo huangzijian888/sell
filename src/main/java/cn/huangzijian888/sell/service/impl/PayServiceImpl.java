@@ -28,8 +28,6 @@ public class PayServiceImpl implements PayService {
 
     private final String ORDER_NAME = "微信点餐订单";
 
-
-
     @Autowired
     private WxPayService wxService;
 
