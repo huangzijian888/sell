@@ -1,6 +1,6 @@
 package cn.huangzijian888.sell.utils;
 
-import java.util.Random;
+import cn.hutool.core.util.RandomUtil;
 
 /**
  * @author: huangzijian888
@@ -15,8 +15,6 @@ public class KeyUtil {
      * @return
      */
     public static synchronized String generateUniqueKey() {
-        Random random = new Random();
-        Integer number = random.nextInt(900000) + 100000;
-        return System.currentTimeMillis() + String.valueOf(number);
+        return System.currentTimeMillis() + RandomUtil.randomNumbers(6);
     }
 }
