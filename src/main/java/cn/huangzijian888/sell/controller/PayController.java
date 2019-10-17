@@ -1,5 +1,6 @@
 package cn.huangzijian888.sell.controller;
 
+import cn.huangzijian888.sell.config.ProjectUrlConfig;
 import cn.huangzijian888.sell.dto.OrderDTO;
 import cn.huangzijian888.sell.enums.ResultEnum;
 import cn.huangzijian888.sell.exception.SellException;
@@ -28,6 +29,9 @@ public class PayController {
     @Autowired
     private PayService payService;
 
+    @Autowired
+    private ProjectUrlConfig projectUrlConfig;
+
     @GetMapping("/create")
     public ModelAndView create(@RequestParam("orderId") String orderId,
                                @RequestParam("returnUrl") String returnUrl,
@@ -37,7 +41,16 @@ public class PayController {
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
         }
 
-        WxPayMpOrderResult result = payService.create(orderDTO);
+        WxPayMpOrderResult result = null;
+        try {
+            result = payService.create(orderDTO);
+
+        } catch (WxPayException e) {
+            map.put("msg", e.getErrCodeDes());
+            map.put("url", projectUrlConfig.getSell());
+            return new ModelAndView("common/error", map);
+
+        }
         map.put("payResponse", result);
         map.put("returnUrl", returnUrl);
 
