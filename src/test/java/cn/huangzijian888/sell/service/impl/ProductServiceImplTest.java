@@ -1,7 +1,7 @@
 package cn.huangzijian888.sell.service.impl;
 
 import cn.huangzijian888.sell.dataobject.ProductInfo;
-import cn.huangzijian888.sell.enums.ProductStatus;
+import cn.huangzijian888.sell.enums.ProductStatusEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,9 +50,21 @@ public class ProductServiceImplTest {
     public void save() {
         ProductInfo productInfo = new ProductInfo("123457",
                 "皮皮虾", new BigDecimal(3.2), 100,
-                2, ProductStatus.DOWN.getCode(), "很好吃的下",
+                2, ProductStatusEnum.DOWN.getCode(), "很好吃的下",
                 "http://xxx.com");
         ProductInfo result = productService.save(productInfo);
         Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void onSale() {
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.UP, result.getProductStatusEnum());
+    }
+
+    @Test
+    public void offSale() {
+        ProductInfo result = productService.offSale("123456");
+        Assert.assertEquals(ProductStatusEnum.DOWN, result.getProductStatusEnum());
     }
 }
