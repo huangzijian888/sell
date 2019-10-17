@@ -15,6 +15,7 @@ import cn.huangzijian888.sell.repository.OrderMasterRepository;
 import cn.huangzijian888.sell.service.OrderService;
 import cn.huangzijian888.sell.service.PayService;
 import cn.huangzijian888.sell.service.ProductService;
+import cn.huangzijian888.sell.service.PushMessageService;
 import cn.huangzijian888.sell.utils.KeyUtil;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -190,6 +194,9 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】更新失败,orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        // 推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
     }
