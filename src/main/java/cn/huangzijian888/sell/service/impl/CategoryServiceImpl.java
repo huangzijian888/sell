@@ -1,6 +1,8 @@
 package cn.huangzijian888.sell.service.impl;
 
 import cn.huangzijian888.sell.dataobject.ProductCategory;
+import cn.huangzijian888.sell.enums.ResultEnum;
+import cn.huangzijian888.sell.exception.SellException;
 import cn.huangzijian888.sell.repository.ProductCategoryRepository;
 import cn.huangzijian888.sell.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ProductCategory save(ProductCategory productCategory) {
-        return repository.save(productCategory);
+        ProductCategory category;
+        try {
+            category = repository.save(productCategory);
+        } catch (Exception e) {
+            throw new SellException(ResultEnum.UNKNOWN_MISTAKE.getCode(), "SQL执行错误");
+        }
+        return category;
     }
 }
