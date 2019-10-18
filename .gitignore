@@ -8,6 +8,9 @@ src/main/resources/application-product.yml
 src/main/resources/application-dev.yml
 
 src/main/resources/sell.p12
+src/main/resources/wechat.p12
+
+develop.sh
 
 ### STS ###
 .apt_generated
@@ -19,6 +22,7 @@ src/main/resources/sell.p12
 .sts4-cache
 
 ### IntelliJ IDEA ###
+.DS_Store
 .idea
 *.iws
 *.iml
